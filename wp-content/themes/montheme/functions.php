@@ -6,6 +6,7 @@ function montheme_supports ()
     add_theme_support('post-thumbnails');
     add_theme_support('menus');
     register_nav_menu('header', 'En tête du menu');
+    register_nav_menu('footer', 'Pied de page');
 }
 
 function montheme_register_assets ()
@@ -23,6 +24,13 @@ function montheme_title_separator ()
     return '|';
 }
 
+function montheme_menu_class($classes)
+{
+    $classes[] = 'link link-hover';
+    return $classes;
+}
+
 add_action('after_setup_theme', 'montheme_supports');
 add_action('wp_enqueue_scripts', 'montheme_register_assets');
 add_filter('document_title_separator', 'montheme_title_separator');
+add_filter('nav_menu_css_class', 'montheme_menu_class');
